@@ -1,12 +1,11 @@
 # Project Title
-Insert the name of your project
+Audio Sculpture
 
 ## Authors
-- Insert main author name, surname, github account
-- Insert other author(s) name, surname, github account (one per list element)
+Chris, Barry, chrisbarry
 
 ## Description
-Insert a description containing about 100 to 150 words, including your motivation and the meaning behind your idea and execution. The Judges will be keen to know how your idea pushes the boundaries of code and technology. 
+This project plans to use sound to provide the data for creating a physical structure that can be scuplted in real time by physical controls. Audio will be sucked in from YouTube and projected into a 3d world inside Unity. Controls will be passed using OSC from VDMX, as well as post processing effects also controlled by vdmx / controllers. 
 
 ## Link to Prototype
 NOTE: If your project lives online you can add one or more links here. Make sure you have a stable version of your project running before linking it.
