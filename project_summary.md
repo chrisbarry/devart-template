@@ -1,14 +1,12 @@
-# Project Title
-Audio Sculpture
+# Audio Sculpture
 
-## Authors
-Chris, Barry, chrisbarry
+## Chris Barry
 
 ## Description
-This project plans to use sound to provide the data for creating a physical structure that can be scuplted in real time by physical controls. Audio will be sucked in from YouTube and projected into a 3d world inside Unity. Controls will be passed using OSC from VDMX, as well as post processing effects also controlled by vdmx / controllers. 
+This project plans to use sound to provide the data for creating a virtual structure that can be sculpted in real time by physical controls. Audio will be sucked in from YouTube and projected into a 3d world inside Unity. Controls will be passed using OSC from VDMX, as well as post processing effects also controlled by vdmx / controllers.
 
 ## Link to Prototype
-NOTE: If your project lives online you can add one or more links here. Make sure you have a stable version of your project running before linking it.
+Coming soon
 
 [Example Link](http://www.google.com "Example Link")
 
@@ -20,7 +18,7 @@ function test() {
 }
 ```
 ## Links to External Libraries
- NOTE: You can also use this space to link to external libraries or Github repositories you used on your project.
+NOTE: You can also use this space to link to external libraries or Github repositories you used on your project.
 
 [Example Link](http://www.google.com "Example Link")
 
