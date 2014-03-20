@@ -8,4 +8,4 @@ This project plans to use sound to provide the data for creating a virtual struc
 
 ## Images & Videos
 
-![Example Image](project_images/cover.jpg?raw=true "Example Image")
+![Example Image](project_images/3half-circle-wave.png?raw=true "Example Image")
