@@ -1,7 +1,8 @@
 {
     "technologies": {
         "apis": [
-            "Google Data Api"
+            "YouTube Data Api",
+            "Youtube Player Api"
         ],
         "toolkits": [
             "Unity",
