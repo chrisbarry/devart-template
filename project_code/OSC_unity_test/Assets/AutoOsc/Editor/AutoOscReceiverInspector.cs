@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEditor;
 using System.Linq;
+
 [CustomEditor(typeof(AutoOscReceiver))]
 public class AutoOscReceiverInspector : Editor {
 	private enum Server_Array_Error{

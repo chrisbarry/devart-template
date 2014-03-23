@@ -1,49 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class State : MonoBehaviour {
+public abstract class State {
 
-	// Use this for initialization
+	public abstract string name {get;set;}
+	public abstract void DoActions();
+	public abstract string CheckConditions();
+	public abstract void EntryActions();
+	public abstract void ExitActions();
 
-			/*
-			def __init__(self, name):
-			self.name = name
-			def do_actions(self):
-			pass
-			def check_conditions(self):
-			pass
-			def entry_actions(self):
-			pass
-			def exit_actions(self):
-			pass
-			*/
-		
-	void doActions ()
-	{
-
-	}
-
-	void checkConditions ()
-	{
-		
-	}
-
-	void entryActions ()
-	{
-		
-	}
-
-	void exitActions ()
-	{
-		
-	}
-
-	void Start () {
-				
-			}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

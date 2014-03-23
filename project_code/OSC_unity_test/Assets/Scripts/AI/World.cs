@@ -34,5 +34,7 @@ public class World : MonoBehaviour {
 		//entity.id = self.entity_id
 		//self.entity_id += 1
 	}
+
+
 	
 }

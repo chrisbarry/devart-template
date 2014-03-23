@@ -1,37 +1,37 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class StateMachine : MonoBehaviour {
 
+	private List<State> states = new List<State>();
+	private State activeState = null;
 
+	public void AddState(State state)
+	{
+		this.states.Add(state);
+	}
 
-	/*
-	 * 
-	 * def __init__(self):
-        self.states = {}
-        self.active_state = None
-    def add_state(self, state):
-        self.states[state.name] = state
-    def think(self):
-        if self.active_state is None:
-            return
-        self.active_state.do_actions()
+	public void Think(){
+		if (this.activeState == null)
+			return;
+		this.activeState.DoActions();
+		var newStateName = this.activeState.CheckConditions();
+		if (newStateName != null)
+			this.SetState(newStateName);
+	}
 
-		new_state_name = self.active_state.check_conditions()
-        if new_state_name is not None:
-            self.set_state(new_state_name)
-    def set_state(self, new_state_name):
-        if self.active_state is not None:
-            self.active_state.exit_actions()
-        self.active_state = self.states[new_state_name]
-        self.active_state.entry_actions()
-
-*/
-
+	public void SetState(string newStateName){
+		if (this.activeState != null)
+			this.activeState.ExitActions();
+		this.activeState = this.states.Find(i=>i.name == newStateName); //This line is wrong, need to lookup state by state name;
+		this.activeState.EntryActions();
+	}
 
 	// Use this for initialization
 	void Start () {
-	
+
 	}
 	
 	// Update is called once per frame
