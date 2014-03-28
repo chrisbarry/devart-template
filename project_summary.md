@@ -2,6 +2,7 @@
 
 ## [Click here to launch demo](http://chrisbarry.info/)
 
+## [Click here for video demo](https://www.youtube.com/watch?v=I7-_wmwaAsk)
 ## Chris Barry
 
 ## Description
@@ -19,5 +20,7 @@ If a single button is pressed, one ball will move, and the others will follow.
 If people press the buttons together at the same time, then the balls will collaborate to perform more and more complex dance routines.
 
 ## Images & Videos
+
+
 
 ![Example Image](project_images/Balls-AI-Working-Realtime-Lighting.jpg?raw=true "Example Image")
