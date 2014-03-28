@@ -1,6 +1,6 @@
 ![Balls-final](../project_images/final.jpg?raw=true "Balls-final")
 
-[Click here to launch demo in unity web player](chrisbarry.info)
+[Click here to launch demo in unity web player](http://chrisbarry.info/)
 
 The final piece is able to react to 4 button inputs, which would be controlled by participants at the installation, using large physical buttons.
 
