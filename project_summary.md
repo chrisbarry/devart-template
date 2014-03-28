@@ -1,5 +1,7 @@
 # Support, Inspire, Perform
 
+## [Click here to launch demo](http://chrisbarry.info/)
+
 ## Chris Barry
 
 ## Description
