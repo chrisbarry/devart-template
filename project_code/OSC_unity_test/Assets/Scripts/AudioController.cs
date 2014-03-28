@@ -18,31 +18,92 @@ public class AudioController : MonoBehaviour {
 
 	private Vector3[] vertArrayMember;
 	private int[] triArrayMember;
+	private BeatDetektorJS bd;
+
+	float[] array;
+	int count;
+	int buffersize;
+	int beatcounterlast;
+
+	Main main;
 
 	GameObject Wave;
 
 	void Start () {
 		camera = GameObject.Find("Main Camera");
 		this.Player = camera.AddComponent<AudioSource>();
-		songs[0] = "Audio/sing";
+		songs[0] = "Audio/Cirrus";
 		samples = new float[qSamples];
 		fSample = AudioSettings.outputSampleRate;
 		Clip = (AudioClip)Resources.Load(songs[0].ToString());			
 		Player.clip = Clip;
 		Player.Play();
-		//Player.volume = 1.0f;
+		//Player.volume = 0.0f;
 		SetupWave();
 		vertArrayMember = new Vector3[(samples.Length * 3) + 2];
 		triArrayMember = new int[(samples.Length * 3) * 4];
 		//SimpleMesh();
 		sampleArray = new List<float[]>();
 
+
+		buffersize = 128;
+		bd = new BeatDetektorJS();
+		array = new float[buffersize];
+		bd.init(85.0f, 169.0f);
+		main = GameObject.Find("Main Camera").GetComponent<Main>();
+
+		VisManager vismanager = GameObject.Find("Main Camera").GetComponent<VisManager>();
+		vismanager.SetAudioSource(Player);
+
 	}
+
+
+
 
 	// Update is called once per frame
 	void Update () {
-			Player.GetOutputData(samples,0);
-			RenderWaveCircleOutside(samples);
+		//Player.GetOutputData(samples,0);				
+		//RenderWaveCircleOutside(samples);
+
+		Player.GetSpectrumData(array, 0, FFTWindow.BlackmanHarris);
+		                         
+
+				
+		bd.process(Time.time, array);
+		
+		if(bd.beat_counter != beatcounterlast)
+		{
+			//GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);     
+			//GameObject cube = Instantiate(Resources.Load("vuBar")) as GameObject;
+			//cube.AddComponent("Rigidbody");
+			//cube.transform.position = new Vector3(-10-(x*3), 7, -7);
+			//Debug.Log(bd.beat_counter);
+			//this.x++;
+			//this.y++;
+
+			foreach(var ball in main.balls)
+			{
+				if (ball.brain.activeState.GetType() != typeof(BallStateAimless))
+				{
+					//ball.light.intensity = 2.0f;
+				}
+			}
+
+		}
+		beatcounterlast = bd.beat_counter;
+		main.beatCount = bd.beat_counter;
+
+		var lightModifier = GetRMS ();
+
+
+	}
+
+	float GetRMS() {
+		float sum = 0f;
+		for (int i=0; i < this.array.Length; i++){
+			sum += this.array[i]*this.array[i]; // sum squared samples
+		}
+		return Mathf.Sqrt(sum/this.array.Length); // rms = square root of average
 	}
 
 	void SetupWave(){

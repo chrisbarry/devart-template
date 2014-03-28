@@ -5,7 +5,7 @@ public class BallStateAimless : State {
 
 	private Ball ball = null;
 	public override string name {get;set;}
-
+	public override Main main { get; set; }
 
 	public BallStateAimless(Ball ball)
 	{
@@ -14,49 +14,75 @@ public class BallStateAimless : State {
 		//self.leaf_id = None
 	}
 
+	public override void TriggerSomething ()
+	{
+
+	}
+
 	public void RandomDestination(){
-		//w, h = SCREEN_SIZE
-		//self.ant.destination = Vector2(randint(0, w), randint(0, h))
-		this.ball.destination = new Vector3(Random.Range(-10,10),this.ball.ball.transform.position.y,Random.Range(-10,10));
-		MonoBehaviour.print("set destination");
+		this.ball.destination = new Vector3(Random.Range(-5,5),this.ball.ballGameObject.transform.position.y,Random.Range(-5,5));
 	}
 
 	public override void DoActions(){
-		if (!this.ball.moving)
-		{
-			if (Random.Range(0,100) == 1)
+			if (Random.Range(0,200) == 1)
 			{
+				//MonoBehaviour.print("moving");
 				this.RandomDestination();
 				this.ball.moving = true;
+				Vector3 heading = this.ball.destination - this.ball.ballGameObject.transform.position;
+				this.ball.rigidbody.AddForce(heading * 3);
 			}
-		}
-			
+
+				
+		if (this.ball.light.intensity != 0.0f) 
+		{
+			this.ball.light.intensity = this.ball.light.intensity * 0.6f;
+		}	
+
 	}
 
+	
 	public override string CheckConditions(){
 
-		if (this.ball.location == this.ball.destination)
+
+		var nearestBallLarger = this.ball.GetNearestBall(5.0f);
+
+		if (nearestBallLarger != null &&
+		    nearestBallLarger.hasfollower == false && 
+		    (nearestBallLarger.brain.activeState.GetType() == typeof(BallStateRandom4Point) || 
+		 	nearestBallLarger.brain.activeState.GetType() == typeof(BallStateFollow)))
+		    {
+			if (nearestBallLarger.leader == null)
+			{
+				ball.target = nearestBallLarger;
+				//MonoBehaviour.print (nearestBallLarger.name);
+				return "follow";
+			}
+			else 
+			{
+			if (nearestBallLarger.leader.brain.activeState.GetType() != typeof(BallStateCornerSquare))
+				{
+				ball.target = nearestBallLarger;
+				//MonoBehaviour.print (nearestBallLarger.name);
+				return "follow";
+				}
+			}
+		}
+		    
+		var nearestBall = this.ball.GetNearestBall(1.5f); //nearest ball, within 2.0f radius
+
+		if (nearestBall == null)
 		{
-			this.ball.moving = false;
+			return null;
 		}
 
-		return null; //Always stay in aimless for now..
+		return "avoid";
 
-		/*leaf = self.ant.world.get_close_entity("leaf", self.ant.location)
-		if leaf is not None:
-		self.ant.leaf_id = leaf.id
-		return "seeking"
-		# If the ant sees a spider attacking the base, go to hunting state
-		spider = self.ant.world.get_close_entity("spider", NEST_POSITION, NEST_SIZE)
-		if spider is not None:
-		if self.ant.location.get_distance_to(spider.location) < 100.:
-		self.ant.spider_id = spider.id
-		return "hunting"
-		return None
-		*/
+	 //Always stay in aimless for now..
 	}
 
 	public override void EntryActions(){
+		//MonoBehaviour.print ("aimless");
 		this.ball.speed = 10;
 		//self.ant.speed = 120. + randint(-30, 30)
 		//this.RandomDestination();
@@ -64,6 +90,7 @@ public class BallStateAimless : State {
 
 	public override void ExitActions ()
 	{
+		this.ball.beatsWhileHeld = 0;
 		//throw new System.NotImplementedException ();
 	}
 }

@@ -6,7 +6,7 @@ using System.Linq;
 public class StateMachine : MonoBehaviour {
 
 	private List<State> states = new List<State>();
-	private State activeState = null;
+	public State activeState = null;
 
 	public void AddState(State state)
 	{
@@ -23,9 +23,9 @@ public class StateMachine : MonoBehaviour {
 	}
 
 	public void SetState(string newStateName){
-		if (this.activeState != null)
+		if (this.activeState != null && this.activeState.name != newStateName)
 			this.activeState.ExitActions();
-		this.activeState = this.states.Find(i=>i.name == newStateName); //This line is wrong, need to lookup state by state name;
+		this.activeState = this.states.Find(i=>i.name == newStateName);
 		this.activeState.EntryActions();
 	}
 
