@@ -1,4 +1,3 @@
-# ~~Audio Sculpture~~
 # Support, Inspire, Perform
 
 ## Chris Barry
@@ -7,7 +6,7 @@
 
 ~~This project plans to use sound to provide the data for creating a virtual structure that can be sculpted in real time by physical controls. Audio will be sucked in from YouTube and projected into a 3d world inside Unity. Controls will be passed using OSC from VDMX, as well as post processing effects also controlled by vdmx / controllers.~~
 
-This project now will attempt to show how encouragement and collaboration can be used to make something greater than the sum of it's parts.
+This project will attempt to show how encouragement and collaboration can be used to make something greater than the sum of it's parts.
 
 There will be a number of buttons in front of a screen, showing some balls moving aimlessly around on a surface.
 
